@@ -338,19 +338,143 @@ fruits instanceof Array; // true
 
 
 
+# JavaScript Array Methods
 
+`join` method 또한 array에 아래와 같이 사용될 수 있다.
 
+```javascript
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+console.log(fruits.join(" * ")); // Banana * Orange * Apple * Mango
+```
 
+#### 1. 배열의 마지막 요소를 제거하고 싶은 경우 - pop
 
+```javascript
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.pop();
+console.log(fruits); // ["Banana", "Orange", "Apple"];
+```
 
+#### 2. 배열의 마지막 위치에 요소를 추가하고 싶은 경우 - push
 
+`push` method의 경우 요소를 추가하고 변화된 배열의 길이를 리턴한다.
 
+```javascript
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.push("Kiwi");
+console.log(fruits); // ["Banana", "Orange", "Apple", "Mango", "Kiwi"]
+```
 
+#### 3. 배열의 첫번째 위치의 요소를 제거하고 싶은 경우 - shift
 
+`shift` method의 경우 제거한 첫번째 요소를 리턴한다.
 
+```javascript
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.shift();
+console.log(fruits); // ["Orange", "Apple", "Mango"]
+```
 
+#### 4. 배열의 첫번째 위치에 요소를 추가하고 싶은 경우 - unshift
 
+````javascript
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.unshift("Kiwi");
+console.log(fruits); // ["Kiwi", "Banana" , Orange", "Apple", "Mango"]
+````
 
+#### 5. 이미 배열에 할당된 요소의 값을 변화시키고 싶은 경우
+
+```javascript
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits[0] = "Kiwi";   
+console.log(fruits); // ["kiwi", "Orange", "Apple", "Mango"]
+```
+
+#### 6. 배열의 요소를 인덱스 값으로 제거하고 싶은 경우 - delete
+
+```javascript
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+delete fruits[0];
+console.log(fruits); // ["Orange", "Apple", "Mango"]
+```
+
+`pop` and `unshift`와의 차이점은 `delete`로 제거한 요소는 `undefined`으로 채워진다. 다시 말해서 배열의 본래 길이 자체에는 변화가 없다. 다만 그 자리를 `undefined`으로 채운다.
+
+#### 7. 다수의 요소를 배열의 특정 위치에 추가하고 싶은 경우 - splice
+
+```javascript
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.splice(2, 0, "Lemon", "Kiwi");
+// ["Banana", "Orange", "Lemon", "Kiwi", "Apple", "Mango"]
+```
+
+1. `splice` method의 첫번째 숫자 2의 경우 어느 `index`에 요소를 추가할 것인가를 의미한다.
+2. `splice` method의 두번째 숫자는 추가하는 과정에서 몇 개의 요소를 삭제할 것인가를 의미한다.
+3. `splice` method의 세번째 ~ 나오는 인자는 순서대로 첫번째 인자로 준 `index`이후에 추가된다.
+
+#### 8. 다수의 요소를 배열의 특정 위치에 추가하면서 추가하는 위치의 기존의 요소를 제거하고 싶은 경우 - splice
+
+```javascript
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.splice(2, 2, "Lemon", "Kiwi"); // ["Apple", "Mango"]
+```
+
+1. `splice` method의 첫번째 숫자 2의 경우 어느 `index`에 요소를 추가할 것인가를 의미한다.
+2. `splice` method의 두번째 숫자 2의 경우  세번째 ~ 나오는 값을 추가하기 전 `index` 의 기존 요소를 몇 개를 제거할 것인가를 의미한다.
+3. `splice` method의 세번째 ~ 나오는 인자는 순서대로 첫번째 인자로 준 `index`이후에 추가된다.
+
+#### 9. 다수의 요소의 추가없이 제거만 하고 싶은 경우에도 - splice
+
+```javascript
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.splice(0, 1); // Orange,Apple,Mango
+```
+
+첫번째 `index 0` 을 포함한 몇 개의 요소를 삭제할 것인가를 두번째 인자에 할당한다.
+
+위 예시는 `index 0` 을 포함해 총 1개의 요소를 삭제하는 코드다
+
+#### 10. 두 개의 배열을 병합하고 싶은 경우 - concat
+
+```javascript
+var abc = ["a", "b", "c"];
+var def = ["d", "e", "f"];
+var abcdef = abc.concat(def);
+console.log(abcdef); // ["a", "b", "c", "d", "e", "f"]
+```
+
+#### 11. 두 개 이상의 배열의 병합하고 싶은 경우 - concat
+
+```javascript
+var abc = ["a", "b", "c"];
+var def = ["d", "e", "f"];
+var ghi = ["g", "h", "i"];
+var jkl = ["j", "k", "l"];
+var abcdefghi = abc.concat(def, ghi, jkl);
+console.log(abcdefghi); // ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"];
+```
+
+#### 12. 인자(start, end)를 기준으로 배열의 값을 추출할 때 본래의 배열의 값 손상 없이 새로운 배열을 만드는 경우 - slice
+
+```;javascript
+var fruits = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
+var citrus = fruits.slice(1, 3);
+console.log(fruits); // ["Banana", "Orange", "Lemon", "Apple", "Mango"]
+console.log(citrus); // ["Orange", "Lemon"]
+```
+
+`slice(start, end)` , 단 `end` 인덱스는 포함하지 않는다.
+
+#### 13. 인자(start) 값만을 slice method에 준 경우
+
+```javascript
+var fruits = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
+var noBanana = fruits.slice(1);
+console.log(noBanana); // ["Orange", "Lemon", "Apple", "Mango"]
+```
+
+`slice(start)` 인 경우 start 부터 해당 배열의 끝까지 자른다.
 
 
 
