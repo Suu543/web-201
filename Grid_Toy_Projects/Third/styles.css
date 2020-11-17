@@ -1,0 +1,151 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    font-size: 62.5%;
+}
+
+h2 {
+    font-size: 3rem;
+}
+
+.grid {
+    display: grid;
+    /* column을 col로 네이밍 */
+    grid-template-columns: repeat(12, [col] 1fr);
+    /* row를 row로 네이밍 */
+    grid-template-rows: repeat(5, [row] minmax(80px, auto));
+    column-gap: 1rem;    
+    row-gap: 1.5rem;
+}
+
+.grid-item {
+    background: #eee;
+    text-transform: uppercase;
+    padding: 1rem;
+    font-size: 1.4rem;
+}
+
+.grid-item-item1 {
+    grid-column: col / span 4;   
+    grid-row: row;
+}
+
+.grid-item-item2 {
+    grid-column: col 5 / span 4;
+    grid-row: row;
+}
+
+.grid-item-item3 {
+    grid-column: col 9 / span 4;
+    grid-row: row;
+}
+
+.grid-item-item4 {
+    grid-column: col / span 8;
+    grid-row: row 2;
+}
+
+.grid-item-item5 {
+    grid-column: col 9 / span 4;
+    grid-row: row 2;
+}
+
+.grid-item-item6 {
+    grid-column: col / span 3;
+    grid-row: row 3;
+}
+
+.grid-item-item7 {
+    grid-column: col 4 / span 3;
+    grid-row: row 3;
+}
+
+.grid-item-item8 {
+    grid-column: col 7 / span 3;
+    grid-row: row 3;
+}
+
+.grid-item-item9 {
+    grid-column: col 10 / span 3;
+    grid-row: row 3;
+}
+
+.grid-item-item10 {
+    grid-column: col / span 6;
+    grid-row: row 4;
+}
+
+.grid-item-item11 {
+    grid-column: col 7 / span 6;
+    grid-row: row 4;
+}
+
+.grid-item-item12 {
+    grid-column: col / span 12;
+    grid-row: row 5
+}
+
+/* Not a typical 12 column grid */
+.grid-item-item-v1 {
+    grid-column: col / span 4;
+    grid-row: row / span 2;
+}
+
+.grid-item-item-v2 {
+    grid-column: col 5 / span 4;
+    grid-row: row / span 3;
+}
+
+.grid-item-item-v3 {
+    grid-column: col 9 / span 4;
+    grid-row: row;
+}
+
+.grid-item-item-v4 {
+    grid-column: col 9 / span 4;
+    grid-row: row 2;
+}
+
+.grid-item-item-v5 {
+    grid-column: col / span 3;
+    grid-row: row 3;
+}
+
+.grid-item-item-v6 {
+    grid-column: col 4;
+    grid-row: row 3;
+}
+
+.grid-item-item-v7 {
+    grid-column: col 9;
+    grid-row: row 3;
+}
+
+.grid-item-item-v8 {
+    grid-column: col 10 / span 3;
+    grid-row: row 3;
+}
+
+.grid-item-item-v9 {
+    grid-column: col / span 6;
+    grid-row: row 4;
+}
+
+.grid-item-item-v10 {
+    grid-column: col 7 / span 3;
+    grid-row: row 4;
+}
+
+.grid-item-item-v11 {
+    grid-column: col 10 / span 3;
+    grid-row: row 4;
+}
+
+.grid-item-item-v12 {
+    grid-column: col / span 12;
+    grid-row: row 5;
+}

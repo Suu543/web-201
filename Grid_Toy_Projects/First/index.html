@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            font-size: 62.5%;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+            grid-template-areas: 
+                "header header header header"
+                "aside article article article"
+                "aside article article article"
+                "aside article article article"
+                "footer footer footer footer"
+            ;
+            grid-gap: 10px;
+            background-color: #FDAFB1;
+            color: white;
+        }
+
+        .grid-container > div {
+            padding: 20px 0;
+        }
+
+        .header {
+            grid-area: header;
+            background-color: #98D1C7;
+            font-size: 3rem;
+        }
+
+        .aside {
+            grid-area: aside;
+            background-color: #62B7B6;
+            font-size: 3rem;
+        }
+
+        .article {
+            grid-area: article;
+            background-color: #FA7A7B;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 3rem;
+        }
+
+        .footer {
+            grid-area: footer;
+            background-color: #98D1C7;
+            font-size: 3rem;
+        }
+
+        .article-images {
+            width: 90%;
+            margin: auto;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .img {
+            min-width: 100px;
+            min-height: 100px;
+            background-color: gray;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="grid-container">
+        <div class="header">Header</div>
+        <div class="aside">Aside</div>
+        <div class="article">
+            <h1>Article</h1>
+            <div class="article-images">
+                <div class="img">img</div>
+                <div class="img">img</div>
+                <div class="img">img</div>
+            </div>
+        </div>
+        <div class="footer">Footer</div>
+    </div>
+</body>
+</html>
