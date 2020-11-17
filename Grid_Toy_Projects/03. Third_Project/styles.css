@@ -30,122 +30,147 @@ h2 {
 }
 
 .grid-item-item1 {
+    /* col (1, 2, 3, 4) */
     grid-column: col / span 4;   
     grid-row: row;
 }
 
 .grid-item-item2 {
+    /* col (5, 6, 7, 8) */
     grid-column: col 5 / span 4;
     grid-row: row;
 }
 
 .grid-item-item3 {
+    /* col (9, 10, 11, 12) */
     grid-column: col 9 / span 4;
     grid-row: row;
 }
 
 .grid-item-item4 {
+    /* col (1, 2, 3, 4, 5, 6, 7, 8) */
     grid-column: col / span 8;
     grid-row: row 2;
 }
 
 .grid-item-item5 {
+    /* col (9, 10, 11, 12) */
     grid-column: col 9 / span 4;
     grid-row: row 2;
 }
 
 .grid-item-item6 {
+    /* col (1, 2, 3) */
     grid-column: col / span 3;
     grid-row: row 3;
 }
 
 .grid-item-item7 {
+    /* col (4, 5, 6) */
     grid-column: col 4 / span 3;
     grid-row: row 3;
 }
 
 .grid-item-item8 {
+    /* col (7, 8, 9) */
     grid-column: col 7 / span 3;
     grid-row: row 3;
 }
 
 .grid-item-item9 {
+    /* col (10, 11, 12) */
     grid-column: col 10 / span 3;
     grid-row: row 3;
 }
 
 .grid-item-item10 {
+    /* col (1, 2, 3, 4, 5, 6) */
     grid-column: col / span 6;
     grid-row: row 4;
 }
 
 .grid-item-item11 {
+    /* col (7, 8, 9, 10, 11, 12) */
     grid-column: col 7 / span 6;
     grid-row: row 4;
 }
 
 .grid-item-item12 {
+    /* col (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12) */
     grid-column: col / span 12;
     grid-row: row 5
 }
 
 /* Not a typical 12 column grid */
+/* -------------------------------------------------------- */
 .grid-item-item-v1 {
+    /* col (1, 2, 3, 4) */
     grid-column: col / span 4;
     grid-row: row / span 2;
 }
 
 .grid-item-item-v2 {
+    /* col (5, 6, 7, 8) */
     grid-column: col 5 / span 4;
     grid-row: row / span 3;
 }
 
 .grid-item-item-v3 {
+    /* col (9, 10, 11, 12) */
     grid-column: col 9 / span 4;
     grid-row: row;
 }
 
 .grid-item-item-v4 {
+    /* col (9, 10, 11, 12) */
     grid-column: col 9 / span 4;
     grid-row: row 2;
 }
 
 .grid-item-item-v5 {
+    /* col (1, 2, 3) */
     grid-column: col / span 3;
     grid-row: row 3;
 }
 
 .grid-item-item-v6 {
+    /* col (4) */
     grid-column: col 4;
     grid-row: row 3;
 }
 
 .grid-item-item-v7 {
+    /* col (9) */
     grid-column: col 9;
     grid-row: row 3;
 }
 
 .grid-item-item-v8 {
+    /* col (10, 11, 12) */
     grid-column: col 10 / span 3;
     grid-row: row 3;
 }
 
 .grid-item-item-v9 {
+    /* col (1, 2, 3, 4, 5, 6) */
     grid-column: col / span 6;
     grid-row: row 4;
 }
 
 .grid-item-item-v10 {
+    /* col (7, 8, 9) */
     grid-column: col 7 / span 3;
     grid-row: row 4;
 }
 
 .grid-item-item-v11 {
+    /* col (10, 11, 12) */
     grid-column: col 10 / span 3;
     grid-row: row 4;
 }
 
 .grid-item-item-v12 {
+    /* col (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12) */
     grid-column: col / span 12;
     grid-row: row 5;
 }
