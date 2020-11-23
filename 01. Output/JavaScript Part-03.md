@@ -478,5 +478,193 @@ console.log(noBanana); // ["Orange", "Lemon", "Apple", "Mango"]
 
 
 
+# Sorting an Array
+
+1. 알파벳 순으로 배열 정렬하기 - `sort`
+
+```javascript
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.sort(); // Apple, Banana, Mango, Orange
+```
+
+2. 배열 순서 역순으로 정렬하기 - `reverse`
+
+```javascript
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.sort(); // Apple, Banana, Mango, Orange
+fruits.reverse(); // Orange,Mango,Banana,Apple
+```
+
+3. 배열 내부의 요소가 숫자일 때 오름차순 정렬
+
+```javascript
+var points = [40, 100, 1, 5, 25, 10];
+points.sort(function(a, b) { return a - b });
+// 1, 5, 10, 25, 40, 100
+// 최대값 찾기
+points[0]
+// 최소값 찾기
+points[points.length - 1]
+```
+
+4. 배열 내부의 요소가 숫자일 때 내림차순 정렬
+
+```javascript
+var points = [40, 100, 1, 5, 25, 10];
+points.sort(function(a, b) { return b - a });
+// 100, 40, 25, 10, 5, 1
+// 최대값 찾기
+points[points.length - 1]
+// 최소값 찾기
+points[0]
+```
+
+### Compare Function
+
+`compare function`의 목적은 대안의 정렬 순서를 정의하기 위함이다. 
+
+`compare function`은 `negative, zero, or positive value`를 리턴해준다.
+
+```javascript
+function(a, b) { return a - b}
+```
+
+`sort`함수는 두 개의 값을 비교하고 `compare function`에 값을 전달한다. 그리고 전달 받은 값이 `negative, zero, or positive`인지에 따라 정렬 방식을 결정한다.
+
+`a` and `b` 두개의 숫자가 있다고 생각해보자.
+
+1. 만약 리턴 결과가 `음수`라면 `a`는 `b` 전으로 정렬된다.
+2. 만약 리턴 결과가 `양수`라면 `b`는 `a` 전으로 정렬된다.
+
+3. 만약 리턴 결과가 `0`이라면 어떠한 변화도 발생하지 않는다.
+
+```javascript
+(a, b)
+(40, 100)
+
+1. 40 < 100 --> 40, 100
+(a - b) = -60
+```
+
+
+
+## 무작위로 정렬하는 방법
+
+```javascript
+var points = [40, 100, 1, 5, 25, 10];
+points.sort(function(a, b) { return 0.5 - Math.random() });
+```
+
+
+
+## The Fisher Yates Method
+
+`array.sort()` 함수를 이용한 무작위 정렬은 완전한 무작위가 아닐 수 있다. 완전한 무작위를 구현하려면 1938년도에 데이터 사이언스 분야에서 나온 `The Fisher Yates Method`를 사용할 수 있다.
+
+```javascript
+var points = [40, 100, 1, 5, 25, 10];
+
+for (i = points.length - 1; i > 0; i--) {
+    j = Math.floor(Math.random() * i);
+    k = points[i];
+    points[i] = points[j];
+    points[j] = k;
+}
+```
+
+
+
+#### Math.max() and Math.min()
+
+배열의 최대값과 최소값을 찾는 또다른 방식이 존재한다.
+
+```javascript
+Math.max.apply(null, [1, 2, 3]);
+Math.max(1, 2, 3);
+
+function myArrayMax(arr) {
+    return Math.max.apply(null, arr);
+}
+
+Math.min.apply(null, [1, 2, 3]);
+Math.min(1, 2, 3);
+
+function myArrayMin(arr) {
+    return Math.min.apply(null, arr);
+}
+```
+
+
+
+### Min, Max 값을 찾는 가장 빠른 해결책은 다음과 같이 직접 구현할 수 있다.
+
+```javascript
+function myArrayMax(arr) {
+    var len = arr.length;
+    var max = -Infinity;
+    while (len--) {
+        if (arr[len] > max) {
+            max = arr[len];
+        }
+    }
+    
+    return max;
+}
+
+
+function myArrayMin(arr) {
+    var len = arr.length;
+    var min = Infinity;
+    while (len--) {
+        if (arr[len] < min) {
+            min = arr[len];
+        }
+    }
+    
+    return min;
+}
+```
+
+
+
+## Sorting Object Arrays
+
+```javascript
+var cars = [
+    { type: "HYUNDAI", year: 2016 },
+    { type: "KIA", year: 2001 },
+    { type: "SAMSUNG", year: 2010}
+];
+
+cars.sort(function(a, b) { return a.year - b.year});
+
+// type값 정렬
+cars.sort(function(a, b) {
+    var x = a.type.toLowerCase();
+    var y = a.type.toLowerCase();
+    if (x < y) { return - 1;}
+    if (x > y) { return 1;}
+    return 0;
+});
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
