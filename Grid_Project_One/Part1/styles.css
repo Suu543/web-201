@@ -18,19 +18,6 @@ html {
     scroll-behavior: smooth;
 }
 
-body {
-    animation: opening 1s ease-in-out forwards;
-}
-
-@keyframes opening {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-}
-
 h1 {
     font-size: var(--header1);
 }
@@ -62,6 +49,20 @@ a {
     text-decoration: none;
     color: black;   
 }
+
+@keyframes opening {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+body {
+    animation: opening 1s ease-in-out forwards;
+}
+
 
 /* Nav Section */
 .main-head {
@@ -150,10 +151,14 @@ nav {
     z-index: -1;
     transform: translateY(10%) rotateZ(-10deg) rotateX(-90deg);
     animation: plant-entrance 1.5s ease-in-out 0.5s forwards,
-    plant-shake 2.5s infinite ease alternate-reverse 2s;
+      plant-shake 2.5s infinite ease alternate-reverse 2s;
     transform-origin: bottom;
     max-height: 80%;
-}
+  }
+
+.plant2 {
+    left: 40%;
+  }
 
 @keyframes plant-entrance {
     from {
