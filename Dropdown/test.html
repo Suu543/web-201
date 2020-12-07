@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style> 
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            /* 10px */
+            font-size: 62.5%;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .dropdown {
+            width: 320px;
+            overflow: hidden;
+            background: rgb(248, 248, 248);
+            border: 1px solid rgb(222, 222, 222);
+            margin: 30px;
+            cursor: pointer;   
+        }
+
+        .icon {
+            display: flex;
+            justify-content: space-between;
+            padding: 2rem;
+            font-size: 3rem;
+        }
+
+        .menu {
+            height: 240px;
+        }
+
+        .menu li {
+            font-size: 24px;
+            text-transform: uppercase;
+            padding: 14px 10px;
+            border-top: 1px solid rgb(202, 202, 202);
+        }
+
+        .dropdown.closed .menu {
+            height: 0px;            
+        }
+
+        .dropdown.closed .icon span {
+            transform: rotate(180deg);
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="dropdown closed">
+        <h2 class='icon'>Dropdown <span>∆</span></h2>
+        <ul class="menu">
+            <li><a href="#">Item 1</a></li>
+            <li><a href="#">Item 2</a></li>
+            <li><a href="#">Item 3</a></li>
+            <li><a href="#">Item 4</a></li>
+        </ul>
+    </div>
+
+    <script>
+        let dropdown = document.querySelector('.dropdown');
+
+        dropdown.addEventListener('mouseenter', (e) => {
+            if (dropdown.classList.contains('closed')) {
+                dropdown.classList.remove('closed');
+            }
+        })
+
+        dropdown.addEventListener('mouseleave', (e) => {
+            if (!dropdown.classList.contains('closed')) {
+                dropdown.classList.add('closed');
+            }
+        })
+    </script>
+</body>
+</html>
