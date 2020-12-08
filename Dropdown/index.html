@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const MIN = 1;
+const MAX = 12;
+
+let secretNum = Math.floor(Math.random() * (MAX - MIN + 1)) + MIN;
+let guesses = 0; // 도전 횟수를 저장한다.
+let hint = ''; // 힌트를 저장한다.
+let number = 0;
+
+do {
+    // 사용자로 부터 입력을 받는다.
+    let input = prompt(`Please enter a number between ${MIN} and ${MAX}` + hint);
+    number = parseInt(input);
+
+    // 도전 횟수: +1
+    guesses++;
+
+    if (number > secretNum) {
+        hint = ', and less than ' + number;
+    } else if (number < secretNum) {
+        hint = ', and greater than ' + number;
+    } else if (number == secretNum) {
+        alert(`Bravo! you're correct after ${guesses} guess(es).`);
+    }
+} while (number != secretNum);
+    </script>
+</body>
+</html>
