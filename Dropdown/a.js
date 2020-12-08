@@ -1,9 +1,10 @@
-let obj = {
-    a: '가',
-    b: '나',
-    c: '다'
-};
+const test = [
+    { name: 'a', value: 0},
+    { name: 'b', value: 1},
+    { name: 'c', value: 2},
+    { name: 'd', value: 3},
+    { name: 'e', value: 4}
+];
 
-for (let key in obj) {
-    console.log(key, obj[key]);
-}
+console.log(test.some(e => e.name === 'c'));
+console.log(test.)

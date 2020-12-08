@@ -384,6 +384,64 @@ console.log('forEachReduce', forEachReduce);
 
 ```
 
+### 8. some
+
+`some` 메소드는 배열안의 모든 요소를 검사하는 것이 아닌, 순차적으로 검색하다 맞는 요소가 나오면 거기서 멈춘다.
+
+```javascript
+const test = [
+    { name: 'a', value: 0},
+    { name: 'b', value: 1},
+    { name: 'c', value: 2},
+    { name: 'd', value: 3},
+    { name: 'e', value: 4}
+];
+
+console.log(test.some(e => e.name === 'c')); // true
+console.log(test.some(e => e.name === 'f')); // false
+```
+
+
+
+### 9. every
+
+`every` 메소드는 배열안의 모든 요소가 조건에 만족하는지 확인한다. 이 또한 순차적으로 검색하며, 조건에 하나라도 안맞는 요소가 있을경우 false를 반환한다
+
+```javascript
+const test = [
+    { name: 'a', value: 0},
+    { name: 'b', value: 1},
+    { name: 'c', value: 2},
+    { name: 'd', value: 3},
+    { name: 'e', value: 4}
+];
+
+console.log(test.every(e => e.name === 'c')); // false
+console.log(test.every(e => e.value < 5 )); // true
+```
+
+
+
+### 10. find
+
+`find` 메소드는 배열안의 요소 중 조건에 맞는 첫번째 요소를 반환한다.
+
+```javascript
+const test = [
+    { name: 'a', value: 0},
+    { name: 'b', value: 1},
+    { name: 'c', value: 2},
+    { name: 'd', value: 3},
+    { name: 'e', value: 4}
+];
+
+console.log(test.find(e => e.name === 'c')); // { name: 'c', value: 2}
+```
+
+
+
+
+
 
 
 # References
