@@ -113,7 +113,90 @@ Current Index is 9
 
 
 
-### do/while 용례
+### Use Cases for Do...While / While Loops in JavaScript
+
+`자동화(Automation)`는 시스템이 자동으로 작동하도록하는 기술이다. 프로그래밍에서 반복문을 사용해 반복되는 작업을 `자동화(Automation)`한다. 반복문은 프로그래밍 에서 가장 유용한 기능 중 하나고, `Do ... While / While` 반복문의 사용 용례를 알아보자.
+
+
+
+#### Aquarium
+
+**시나리오**: 한 아쿠아리움의 수조는 물고기를 최대 10마리를 수용할 수 있다. 수조 속의 물고기 숫자가 10마리 이상이 되면, 수조의 수용 최대치에 도달한다. 자동으로 물고기 숫자를 확인하고 10 마리 이상의 물고기가 들어오지 못하게 막아야 한다. 이 시나리오를 코드로 옮겨보자.
+
+```javascript
+// Set Population limit of aquarium to 10
+const tankLimit = 10;
+
+// Start off with 0 fish
+let fish = 0;
+
+// Initiate while loop to run until fish reaches population limit
+while (fish < tankLimit) {
+    fish++;
+    console.log("There's room for " + (tankLimit - fish) + " more fish.");
+}
+
+// Output
+There's room for 9 more fish.
+There's room for 8 more fish.
+There's room for 7 more fish.
+There's room for 6 more fish.
+There's room for 5 more fish.
+There's room for 4 more fish.
+There's room for 3 more fish.
+There's room for 2 more fish.
+There's room for 1 more fish.
+There's room for 0 more fish.
+```
+
+아쿠아리움 시나리오를 통해,
+
+1. `while`문은 수조 속의 물고기 숫자가 10마리 보다 많지 않는 동작을 멈추지 않는다.
+2. `while`문은 물고기 숫자가 10마리 보다 많으면 자동으로 동작을 멈춘다.
+
+#### Infinite Loops
+
+`무한 반복 (Infinite Loop)`은 이름에서 알 수 있듯이 무한히 실행되는 어떤 것을 의미한다. 하지만 `무한 반복 (Infinite Loop)`이 실제 일어난다면 당신의 `browser or computer`의 시스템이 부하를 견디지 못하고 망가질 것이다. `무한 반복 (Infinite Loop)`이 무엇인지 이해하고 `while`문을 사용할 때 어떤 경우에 `무한 반복 (Infinite Loop)`이 발생하는지 알아보자.
+
+```javascript
+// Initiate an infinite loop
+while (true) {
+    // 영원히 참이기 때문에 무한 반복
+}
+```
+
+
+
+#### While + Break 
+
+**시나리오**: 북극의 얼음이 계속 녹고 있다. 현재 북극에는 5마리의 북극곰이 있다. 무한히 북극의 북극곰 수를 확인하는 시스템이 있다. 북극에 더 이상 북극곰이 없을 때 시스템이 종료된다. 이 시나리오를 코드로 옮겨보자.
+
+```javascript
+const iceCapsAreMelting = true;
+let polarBears = 5;
+
+while (iceCapsAreMelting) {
+  console.log(`There are ${polarBears} polar bears.`);
+  polarBears--;
+  // Terminate infinite loop when following condition is true
+  if (polarBears === 0) {
+    console.log("There are no polar bears left.");
+    break;
+  }
+}
+
+// Output
+There are 5 polar bears.
+There are 4 polar bears.
+There are 3 polar bears.
+There are 2 polar bears.
+There are 1 polar bears.
+There are no polar bears left.
+```
+
+이 시나리오를 통해 `무한 반복 (Infinite Loop) while`문을 `break`를 이용해 멈추는 방법을 알아봤다.
+
+#### do ... while
 
 ```javascript
 // generate secret number is a random integer between 1 and 12
