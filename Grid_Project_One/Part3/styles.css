@@ -15,20 +15,7 @@ html {
     --special-color: #906272;
     --background-color: #414141;
     --gray-text: #525252;
-    scroll-behavior: smooth;
-}
-
-body {
-    animation: opening 1s ease-in-out forwards;
-}
-
-@keyframes opening {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
+    scroll-behavior: smooth; 
 }
 
 h1 {
@@ -41,17 +28,20 @@ label,
 input,
 a,
 p {
-  font-size: var(--text);
+    font-size: var(--text);
 }
+
 h2 {
-  font-size: var(--header2);
+    font-size: var(--header2);
 }
+
 h3 {
-  font-size: var(--header3);
+    font-size: var(--header3);
 }
+
 h4,
 h5 {
-  font-size: var(--header4);
+    font-size: var(--header4);
 }
 
 ul {
@@ -60,20 +50,34 @@ ul {
 
 a {
     text-decoration: none;
-    color: black;   
+    color: black;
+}
+
+@keyframes opening {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+body {
+    animation: opening 1s ease-in-out forwards;
 }
 
 /* Nav Section */
 .main-head {
+    position: relative;
     box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
     z-index: 2;
-    position: relative;
 }
 
 nav {
     width: 90%;
-    min-height: 10vh;
     margin: auto;
+    min-height: 10vh;
     display: flex;
     align-items: center;
     padding: 2rem 0;
@@ -93,7 +97,7 @@ nav {
 .hero {
     min-height: 90vh;
     width: 95%;
-    margin: 0 0 0 auto;
+    margin: auto;
     display: flex;
     flex-wrap: wrap;
     overflow: hidden;
@@ -106,20 +110,15 @@ nav {
 
 .hero-images {
     flex: 1 1 40rem;
-    background: linear-gradient(#dad8dd, #dad1d4);
-    /* 나뭇잎 효과를 목적으로 */
     position: relative;
+    /* 사진만 1 */
     z-index: 1;
+    background: linear-gradient(#dad8dd, #dad1d4);
 }
 
-/* hero-introduction + hero-images 자식 요소 스타일 */
 .hero-introduction p {
     padding: 5rem 10rem;
-    color: var(--gray-text);
-}
-
-.hero-introduction h2 {
-    padding-top: 3rem;
+    color: var(--gray-text)
 }
 
 .hero-introduction a {
@@ -128,8 +127,7 @@ nav {
     margin-bottom: 4rem;
 }
 
-/* 재활용 클래스 가운데 정렬 */
-.flex {
+ .flex {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -142,40 +140,62 @@ nav {
     object-fit: cover;
 }
 
-/* plant와 z-index가 동일하기 때문에 화면이 90vh 크기 이상인 것 처럼 보인다. */
 .plant {
     position: absolute;
     bottom: 0;
-    left: -20%;
+    left: -15%;
     z-index: -1;
-    transform: translateY(10%) rotateZ(-10deg) rotateX(-90deg);
+    /* Plant-Entrance는 한 번만 발동 */
     animation: plant-entrance 1.5s ease-in-out 0.5s forwards,
-    plant-shake 2.5s infinite ease alternate-reverse 2s;
+               plant-shake 2.5s infinite ease alternate-reverse 2s;
+               /* 2초 delay */
     transform-origin: bottom;
-    max-height: 80%;
 }
 
+.plant2 {
+    left: 40%;
+}
+
+/* Animations */
+/*
 @keyframes plant-entrance {
+    Push Down 10%
     from {
-      transform: translateY(10%) rotateZ(-10deg) rotateX(-90deg);
+        transform: translateY(10%);
     }
     to {
-      transform: translateY(0%) rotateZ(0deg) rotateX(0deg);
+        transform: translateY(0%);
+    }
+}
+*/
+
+/* @keyframes plant-entrance {
+    from {
+        transform: translateY(10%) rotateZ(-10deg);
+    }
+    to {
+        transform: translateY(0%) rotateZ(0deg);
+    }
+} */
+
+/* Flips around */
+@keyframes plant-entrance {
+    from {
+        transform: translateY(10%) rotateZ(-10deg) rotateX(180deg);
+    }
+    to {
+        transform: translateY(0%) rotateZ(0deg) rotateX(0deg);
     }
 }
 
 @keyframes plant-shake {
     from {
-      transform: rotateZ(-5deg);
+        transform: rotateZ(-5deg);
     }
-    to {
-      transform: rotateZ(0deg);
-    }
-}
 
-.burger,
-.menu-check {
-    display: none;
+    to {
+        transform: rotateZ(0deg);
+    }
 }
 
 /* About Section */
@@ -185,9 +205,29 @@ nav {
     flex-wrap: wrap;
 }
 
+.about-image {
+    flex: 1 1 40rem;
+    position: relative;
+}
+
+.about-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.about-image h5 {
+    position: absolute;
+    letter-spacing: 2rem;
+    /* 기준점을 줄려고 */
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .about-text {
+    background-color: var(--background-color);
     color: white;
-    background: var(--background-color);
     flex: 2 1 40rem;
     justify-content: space-around;
 }
@@ -204,26 +244,7 @@ nav {
     padding: 4rem;
 }
 
-.about-image {
-    flex: 1 1 40rem;
-    position: relative;
-}
-
-.about-image h5 {
-    position: absolute;
-    letter-spacing: 2rem;
-    top: 20%;
-    left: 50%;
-    transform: translate(-50%, -20%);
-}
-
-.about-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* Gallery Section */
+/* Gallery */
 .gallery {
     display: grid;
     min-height: 100vh;
