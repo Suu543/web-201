@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style> 
+    <style>
         * {
             padding: 0;
             margin: 0;
@@ -12,8 +12,9 @@
         }
 
         html, body {
-            /* 10px */
             font-size: 62.5%;
+            width: 90%;
+            margin: auto;
         }
 
         ul {
@@ -25,24 +26,52 @@
             color: black;
         }
 
+        h2 {
+            font-size: 3rem;
+        }
+
         .dropdown {
+            margin-top: 5rem;
+            transition: all 0.2s ease-in-out;
             width: 320px;
             overflow: hidden;
-            background: rgb(248, 248, 248);
+            background-color: rgb(248, 248, 248);
             border: 1px solid rgb(222, 222, 222);
-            margin: 30px;
-            cursor: pointer;   
+            display: grid;
+            cursor: pointer;
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr;
+            grid-template-areas: 
+                "icon"
+                "menu";
+        }
+
+        .dropdown.closed {
+            grid-area: icon;
         }
 
         .icon {
             display: flex;
-            justify-content: space-between;
+            justify-content: space-around;
             padding: 2rem;
             font-size: 3rem;
         }
 
+        .icon span {
+            transition: all 0.2s ease-in-out;
+            transform: rotateX(180deg) rotateY(180deg);
+            color: rgb(252, 102, 102);
+        }
+
+        .closed .icon span {
+            transform: rotateX(0deg);
+            color: black;
+        }
+
         .menu {
-            height: 240px;
+            height: 290px;
+            grid-area: menu;
+            transition: all 0.2s ease-in-out;
         }
 
         .menu li {
@@ -50,42 +79,74 @@
             text-transform: uppercase;
             padding: 14px 10px;
             border-top: 1px solid rgb(202, 202, 202);
+            transition: all 0.2s ease-in-out;
+        }
+
+        .menu li:hover {
+            background-color: rgb(252, 102, 102);
+        }
+
+        .menu li:hover a {
+            color: white;
         }
 
         .dropdown.closed .menu {
-            height: 0px;            
+            height: 0px;
         }
 
-        .dropdown.closed .icon span {
-            transform: rotate(180deg);
+        #output {
+            position: absolute;
+            right: 20px;
+            top: 60px;
+            background: rgb(242, 242, 242);
+            width: 350px;
+            padding: 2rem;
+            border: 1px solid black;
         }
-
 
     </style>
 </head>
 <body>
     <div class="dropdown closed">
-        <h2 class='icon'>Dropdown <span>∆</span></h2>
+        <h2 class="icon">Dropdown <span>∆</span></h2>
         <ul class="menu">
-            <li><a href="#">Item 1</a></li>
-            <li><a href="#">Item 2</a></li>
-            <li><a href="#">Item 3</a></li>
-            <li><a href="#">Item 4</a></li>
+            <li><a href="#">Select This Option</a></li>
+            <li><a href="#">Choose Something you want</a></li>
+            <li><a href="#">Get Help</a></li>
+            <li><a href="#">Contact Us</a></li>
         </ul>
     </div>
 
-    <script>
-        let dropdown = document.querySelector('.dropdown');
+    <div id="output">
+        <h2>State: <span id="status"></span></h2>
+    </div>
 
-        dropdown.addEventListener('mouseenter', (e) => {
-            if (dropdown.classList.contains('closed')) {
-                dropdown.classList.remove('closed');
+    <script>
+        // 나는 어떤 것을 담을 통이 필요해요 통을 빌려주세요
+        let dropdown = document.querySelector(".dropdown");
+        let status = document.querySelector("#status");
+
+        // mouseenter 
+        // mouseleave
+        dropdown.addEventListener("mouseenter", (e) => {
+            // 1. dropdown 요소에 어떤 class가 있는지 배열, list로 받아온다
+            // 2. closed라는 클래스가 존재하는지 확인한다
+            // 3. 확인 참이면 (true)면 제거해준다.
+            if (dropdown.classList.contains("closed")) {
+                // 1. dropdown 요소에 모든 클래스를 다시 가져온다
+                // 2. 가져와서 closed라는 클래스를 제거한다
+                dropdown.classList.remove("closed");
+                status.innerHTML = "OPEN";
             }
         })
 
+        // 힌트
+        // 1. mouseleave 이벤트를 사용한다
+        // 2. 클래스를 추가할때는 add 라는 메소드(함수)를 사용한다.
         dropdown.addEventListener('mouseleave', (e) => {
-            if (!dropdown.classList.contains('closed')) {
+            if(!dropdown.classList.contains("closed")) {
                 dropdown.classList.add('closed');
+                status.innerHTML = "CLOSED";
             }
         })
     </script>
