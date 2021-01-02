@@ -1,4 +1,4 @@
-# JavaScript 101
+# JavaScript 101 - Part - 1
 
 프로그래밍에서 가장 중요한 것은 무엇일까?
 
