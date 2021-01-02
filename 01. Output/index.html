@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 90%;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 100px;
+            height: 50vh;
+            background: cornflowerblue;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="click">
+            <a href="https://www.google.com/search?bih=969&biw=1920&hl=ko&sxsrf=ALeKk01nEwJagMBlxEoRQ60iYQMy_3ARZQ%3A1609405624828&ei=uJTtX9aPMoSwmAXai5DQBg&q=alternative&oq=alternative&gs_lcp=CgZwc3ktYWIQAzICCAAyAggAMgUIABCxAzICCAAyAggAMgIIADICCAAyAggAMgIIADICCAA6BwgAELEDEEM6BAgAEAo6BQgAEMsBOgcIABCxAxAKUPAWWLchYP4haAZwAHgCgAGoAYgB1AaSAQMxLjaYAQCgAQGqAQdnd3Mtd2l6wAEB&sclient=psy-ab&ved=0ahUKEwjWy8SU7_ftAhUEGKYKHdoFBGoQ4dUDCA0&uact=5">  지호야 안녕</a>
+          </h1>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perferendis fuga consequuntur error, at labore quia fugit repudiandae, autem vitae optio praesentium quidem placeat dolores quis repellendus ullam iusto. Enim, quisquam?</p>
+    </div>
+    <script>
+        let heading1 = document.querySelector('.click');
+
+        heading1.addEventListener('click', function() {
+            window.history.push('www.google.com')
+        })
+    </script>
+</body>
+</html>
