@@ -1,4 +1,4 @@
-# JavaScript 101 - Part - 3
+# JㅇavaScript 101 - Part - 3
 
 ### Keyword: Operator
 
@@ -243,17 +243,214 @@ console.log(!first_value);
 
 ##### == (Loose Equality)
 
- 
+- 데이터 타입을 변경해 검사한다. 문자열이기는 하지만 안에 들어 있는 것은 숫자이기 때문에 문자 5와 숫자 5를 같다고 간주한다.
 
+```javascript
+const stringFive = '5';
+const numberFive = 5;
 
-
-
+console.log(stringFive == numberFive); // true
+```
 
 ##### === (Strict Equality)
 
+- 데이터 타입의 변환이 없다. 문자열은 문자열이고, 숫자는 숫자로 간주한다. 똑같은 것은 데이터 타입과, 값이 모두 같아야 같다고 간주한다. 왠만하면 이 방식을 사용하는 것을 권장한다.
+
+```javascript
+console.log(stringFive === numberFive); // false
+console.log(stringFive !== numberFive); // true
+```
+
+## Advanced Topics
+
+```javascript
+const a1 = { name: 'a1' };
+const a2 = { name: 'a2' };
+const a3 = a1;
+
+// false - object의 경우 내부의 값이 아닌 참조값(reference)을 저장하기 때문에 당연히 false를 출력
+console.log(a1 == a2); 
+// false - 타입을 떠나서 참조값(reference) 자체가 다르기 때문에 false를 출력
+console.log(a1 === a2);
+// true
+console.log(a1 === a3); // true - 같은 참조값(reference)를 가지고 있으니 true
+
+console.log(0 == false); // true - 둘 다 false로 간주되니까 true
+console.log(0 === false); // false - 값은 같아도 타입 비교시 false
+console.log('' == false); // true - 둘 다 false로 간주
+console.log('' === false); // false - 타입 비교시 false
+console.log(null == undefined); // true - 애는 둘 다 false이기 때문에 같은 것으로 간주
+console.log(null === undefined); // false - 다른 type이니까 false로 간주
+```
+
+## 8. Conditional Operators: if
+
+#### if, else if, else
+
+프로그래밍의 꽃인 조건을 표현하고 싶을때 사용하는 오퍼레이터다.
+
+나의 이름은 A이다.
+
+우리반에는 총 5명의 학생이 있다 (A, B, C, D, E). 
+
+만약 이름이 A라면 A야 안녕 이라고 인사하고, B라면 B야 안녕 ... E야 안녕 까지 출력하고, 나머지는 안녕을 출력해야하는 상황이라 생각해보자. 
+
+```javascript
+const name = 'A';
+
+if (name === 'A') {
+    console.log(`안녕 ${name}`);
+} else if (name === 'B') {
+    console.log(`안녕 ${name}`);
+} else if (name === 'C') {
+    console.log(`안녕 ${name}`);
+} else if (name === 'D') {
+    console.log(`안녕 ${name}`)
+} else if (name === 'E') {
+    console.log(`안녕 ${name}`)
+} else {
+    console.log(`안녕 ${name}`)
+}
+```
+
+## 9. Ternary Operator
+
+#### if, else if, else 를 사용한 것이 너무 복잡하다 생각할 수 있다. 이때 간단한 조건인 경우 한 줄에 간단히 표현할 수 있는 방식이다.
+
+```javascript
+// 조건 ? 조건이 참이라면 : 조건이 거짓이라면
+const name = 'A';
+
+console.log(name === 'A' ? '안녕' : "바이");
+```
+
+중첩의 중첩의 중첩...으로 사용하면 가독성이 떨어지기 때문에 간단한 조건인 경우 혹은 코드가 복잡해 리팩토링에 필요한 경우에만 사용하자. 이 방식과 비슷한 방식으로 `Switch`를 사용할 수 있다.
+
+## 10. Switch
+
+- 다수의 조건을 확인할 수 있다.
+- 다수의 조건값이 보다 직관적이다.
+- 다수의 데이터 타입을 확인할 수 있다.
+
+```javascript
+const browser = "IE";
+
+switch (browser) {
+    case 'IE':
+        console.log('go away!');
+        break;
+    case 'Chrome':
+        console.log("Love you!");
+        break;
+    case 'Firefox':
+        console.log("Love You!");
+        break;
+    default: 
+        console.log("Same...");
+        break;
+}
+
+// Chrome, Firefox 같으니까 붙여서 아래와 같이 사용가능
+switch (browser) {
+    case 'IE':
+        console.log('go away!');
+        break;
+    case 'Chrome':
+    case 'Firefox':
+        console.log("Love You!");
+        break;
+    default: 
+        console.log("Same...");
+        break;
+}
+```
+
+## 11. Loops
+
+- **1. while loop**
+
+- **2. do while**
+
+- **3. for**
+
+### while loop
+
+```javascript
+// 조건이 거짓이 아닌이상 while 문의 body 부분을 계속 실행함
+
+while (조건) {
+    // 이 부분을 while 문의 body라 칭함
+}
+
+// 활용
+let i = 3;
+while (i > 3) {
+    console.log(`while: ${i}`);
+    i--;
+}
+```
+
+### do while
+
+```javascript
+// do 부분을 먼저 실행시키고 while문 실행
+let i = 3;
+
+do {
+    console.log(`do while: ${i}`);
+    i--;
+} while (i > 0);
+```
+
+### for 
+
+```javascript
+// for (begin; condition; step) { 
+//   for 문의 body 
+// }
+// Begin 부분은 딱 한번만 실행됨
+for (let i = 0; i < 10; i++) {
+    console.log(`for: ${i}`);
+}
+
+for (let i = 3; i > 0; i = i - 2) {
+    console.log(`Inline Variable for: ${i}`);
+}
+
+// Nested Loop
+// Big O (n^2) - CPU Intensive는 가능한 피하자
+for (let i = 0; i < 10; i++) {
+    for (let j = 0; j < 10; j++) {
+        console.log(`i: ${i}, j: ${j}`);
+    }
+}
+```
+
+### break (완전히 반복문을 끝냄), continue (지금 껏만 건너뜀)
+
+```javascript
+// 0 ~ 10 까지 순회하면서, 짝수만 출력한다.
+for (let i = 0; i < 10; i++) {
+    if (i % 2 !== 0) {
+        continue;
+    }
+    
+    console.log(i);
+}
+
+// 0 ~ 10 까지 순회하면서, i값이 8이 되었을 때 반복문을 종료한다.
+for (let i = 0; i < 10; i++) {
+    if (i === 8) {
+        break;
+    }
+    
+    console.log(`index: ${i}`);
+}
+```
 
 
- 
+
+
 
 
 
