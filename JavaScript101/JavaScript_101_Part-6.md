@@ -1,4 +1,4 @@
-# JavaScript 101 Part-7
+# JavaScript 101 Part-6
 
 ##### for, while, do ~ while 연습
 

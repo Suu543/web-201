@@ -1,4 +1,4 @@
-# JavaScript 101 Part-6
+# JavaScript 101 Part-7
 
 ![FAANG+MSFT 미래 ; 돌다리 그냥 건너요. 두드리지 말고! : 네이버 포스트](https://post-phinf.pstatic.net/MjAyMDA1MDNfMTQg/MDAxNTg4NDk1MzQzMTg5.WupZrlOtknIpqrelI4k43rBOve64g2cLgTbpyaTeK-8g.WUSLdRnBxreUuRxpA5H1UCNkVH3iybcZfskYHsN6MnAg.JPEG/12312.jpg?type=w1200)
 
