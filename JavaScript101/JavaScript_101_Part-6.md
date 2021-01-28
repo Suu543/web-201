@@ -10,6 +10,7 @@
 #### 1. 배열 `arr_1`과 `arr_2`의 요소의 총합을 구하세요
 
 ```javascript
+// for문 사용하세요
 let arr_1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 let arr_2 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
@@ -20,6 +21,7 @@ let arr_2 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 #### 2. 배열 `arr_3`을 역순으로 배열에 담고 그 배열을 출력해주세요
 
 ```javascript
+// for문 사용하세요
 let arr_3 = [43, "what", 9, true, "cannot", false, "be", 3, true];
 
 // 출력예시
@@ -29,6 +31,7 @@ let arr_3 = [43, "what", 9, true, "cannot", false, "be", 3, true];
 #### 3. 배열 `arr_4`와 `arr_5`의 같은 인덱스 값을 가진 요소끼리의 합을 `same_position` 배열에 할당하세요
 
 ```javascript
+// for문 사용하세요
 let arr_4 = [1, 2, 3];
 let arr_5 = [4, 5, 6];
 
@@ -38,6 +41,7 @@ let arr_5 = [4, 5, 6];
 #### 4. 다음 문자열의 인덱스 값이 2의 배수인 경우 모두 Z로 변경하세요
 
 ```javascript
+// for문 사용하세요
 let str1 = "helloworld";
 
 // ZeZlZwZrZd
@@ -46,6 +50,7 @@ let str1 = "helloworld";
 #### 5. n2 변수에 할당된 숫자의 Factorial을 구해주세요
 
 ```javascript
+// for문 사용하세요
 let n2 = 10;
 
 // 3628800
