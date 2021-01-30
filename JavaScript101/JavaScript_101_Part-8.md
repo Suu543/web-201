@@ -7,9 +7,16 @@
 **OOP(객체지향)**는 프로그래밍에서 가장 많이 사용되는 패러다임 중 하나다. 이번 수업에서 배울 내용은 다음과 같다.
 
 1. **What is Object-Oriented Programming?**
-2. **Building Blocks of OOP**
+2. **Building Blocks of OOP** 
 3. **Four Principles of OOP**
 4. **What to learn next**
+
+#### 이 수업을 통해 숙지해야 할 용어
+
+- **Classes**
+- **Objects**
+- **Methods**
+- **Attributes**
 
 ### What is Object Oriented Programming?
 
@@ -143,17 +150,267 @@ class Car {
     }
 }
  
+const carModel = new Car('white', 'M-3', 'A-3', 'LED', 'premium');
+carModel.getEngine();
+carModel.getCarInfo();
 ```
 
+## Fields (public, private)
+
+`private`은 비교적 최근에 추가된 기능이다. 지금 쓰기에는 무리가 있지만 이런게 있구나 알아두자. 이것이 쓰기에 별로라 사용되지 않는 것이 아니라, 최근에 추가되어 이 문법을 지원하지 않는 브라우저가 존재하기 때문이다.
+
+```javascript
+class Test {
+    publicField = 'public';
+	#privateField = 'private';
+}
+
+const test = new Test();
+// 2
+console.log(test.publicField);
+// Private field '#privateField' must be declared in an enclosing class
+console.log(test.#privateField); 
+```
+
+`public`은 어디에서든지 접근할 수 있다 (**클래스(class)** 내부에 를 정의했을 때의 기본값이라 생각할 수 있다). 하지만 `private`은 **클래스(class)** 내부에서만 접근할 수 있다. 무슨 말인지 조금 더 자세히 알아보자. 
+
+**클래스(class)** 내부에 `private` 변수를 정의하기 위해서는 변수 앞에 `#`을 붙여준다.
+
+어떻게 하면 `private` 값에 접근할 수 있을까?
+
+```javascript
+class Test {
+    publicField = 'public';
+	#privateField = 'private';
+    
+    accessToPrivateField() {
+        return `private field: ${this.#privateField}`
+    }
+}
+
+const test = new Test();
+console.log(test.publicField); // public
+console.log(test.accessToPrivateField()); // private
+```
+
+**클래스(class)** 외부에서는 `private` 값을 읽을 수도 변경할 수도 없다.
+
+## static
+
+`static`은 `클래스(class)` 중 인자로 받은 데이터에 상관없이 항상 일정한 `attribute(class 내부의 변수)` or `메소드(method)`에 사용할 수 있다. 이것은 `객체(object)` or `인스턴스(instance)`마다 할당되는 것이 아닌, `클래스(class)` 자체에 붙어 있는 것으로 이해할 수 있다.
+
+```javascript
+const Test {
+    static publisher = 'yongsu';
+    
+    constructor(testNum) {
+        this.testNum = testNum;
+    } 
+    
+    static printPublisher() {
+        console.log(Test.publisher);
+    }   
+}
+
+const test1 = new Test(1);
+
+console.log(test1.publisher); 
+// undefined - 객체(object) or 인스턴스(instance) 마다 할당되는 것이 아닌, 클래스(class) 자체 할당되는 것이기 때문에
+
+console.log(Test.publisher); 
+// yongsu - 클래스(class) 자체에 할당되는 것이기 때문에 클래스(class) 자체를 이용해야 접근할 수 있다.
+
+Test.printPublisher(); 
+// yongsu - 클래스(class) 자체에 할당되는 것이기 때문에 클래스(class) 자체를 이용해야 접근할 수 있다.
+```
+
+`static`은 `인자값 혹은 클래스(class)`를 이용해 만드는 `객체(object) or 인스턴스(instance)` 에 상관없이 공통으로 사용할 수 있는 경우에 사용한다. 장점은 메모리의 사용을 줄여줄 수 있다.
+
+자세한 사용 방법은 이후 뒷부분에서 다루겠다. 지금은 `static`, `private` 등이 존재하는구나! 정도만 알면 된다.
+
+# Four Principles of OOP
+
+
+
+![Object Oriented Programming - FusionReactor](https://www.fusion-reactor.com/wp-content/uploads/2020/09/oop-1.png)
+
+# 1. 상속 (Inheritance)
+
+`상속(inheritance)`은 자식 클래스가 부모 클래스의 `attribute(class 내부의 변수)`와 `method`를 상속해 이용할 수 있게됨을 의미한다. 게임을 잘 생각해보자. 이 게임에는, 총을 쏘는 사람, 칼을 쓰는 사람, 마법을 쓰는 사람, 세 분류가 존재한다. 이 세 직업의 공통점은 무엇일까? 
+
+**세 직업의 공통점**
+
+1. 사람
+
+`상속(inheritance)`은 `extends`라는 예약어를 이용해 구현할 수 있다. 예시로 확인해보자.
+
+```javascript
+class Human {
+    constructor(name, height, weight, age, gender) {
+        this.name = name;
+        this.height = height;
+        this.weight = weight;
+        this.age = age;
+        this.gender = gender;
+    }
+    
+    walk() {
+        console.log(`${this.name}이 걷는다.`);
+    }
+    
+    run() {
+        console.log(`${this.name}이 뛴다.`)
+    }
+    
+    speak() {
+		console.log(`${this.name}이 말한다.`);		
+    }
+    
+    hit() {
+        console.log(`${this.name}이 주먹으로 사냥감을 사냥하다.`)
+    }
+    
+    shareInfo() {
+        console.log(`${this.name}의 정보를 공유하다.`)
+        return {
+            name: this.name,
+            height: this.height,
+            weight: this.weight,
+            age: this.age,
+            gender: this.gender
+        }
+    }
+}
+
+
+class Warrior extends Human {
+
+    constructor(name, height, weight, age, gender, knife) {
+        super(name, height, weight, age, gender);
+        this.knife = knife;
+    }
+
+    hitAndCutOpponent() {
+        super.hit();
+        console.log(`${this.name}이 칼으로 사냥감을 사냥하다`);
+    }
+
+    getKnife() {
+        console.log(`${this.knife}종류의 칼을 사용하고 있다`)
+    }
+}
+
+const su = new Warrior('su', 180, 100, 20, 'male', 'solider knife');
+su.hitAndCutOpponent();
+su.getKnife();
+```
+
+위 예시를 보면, `Warrior` 클래스는 `extends`라는 예약어를 사용해 `Human` 클래스를 상속하는 것을 확인할 수 있다. `Warrior` 클래스는  `Human` 클래스  `constructor`에 정의된 `name`, `height`, `weight`, `age`, `gender`를 이용하고 싶다. 이때 `super` 라는 키워드를 사용할 수 있다. `new Warrior`를 이용해 `객체(object) or 인스턴스(instance)`를 생성하면서 전달한 인수를, `super`에 전달하면 상속한 `Human` 클래스의 `constructor`의 attribute를 초기화하는 것을 알 수 있다. 
+
+(단, `Warrior` 클래스는 이미 `Human` 클래스를 상속했기 때문에 `this` 예약어를 사용해 마치 자기 자신의 `attribute(class 내부의 변수)`인 것처럼 사용할 수 있다. 또한 `Human` 클래스의 `constructor`에 없는 `Warrior` 클래스 만의 `attribute(class 내부의 변수)`를 가지고 싶은 경우 위와 같이, `this.knife = knife` 방식을 이용해 `Warrior` 클래스 만의 `attribute(class 내부의 변수)`를 설정할 수 있다. )
+
+비록 `Warrior` 클래스의 `Constructor`에는 `this.knife` 밖에 없음에도, `Human` 클래스를 상속했기 때문에 위와 같이 `Human` 클래스의 `Constructor`의 `attribute(class 내부의 변수)`값에  `this` 키워드를 이용해 자유롭게 이용할 수 있다. 이것을 코드로 표현해보면
+
+```javascript
+// A
+constructor(name, height, weight, age, gender, knife) {
+        super(name, height, weight, age, gender);
+        this.knife = knife;
+}
+
+// A 부분의 constructor는 아래와 같다고 간주할 수 있다.
+constructor(name, height, weight, age, gender, knife) {
+    this.name = name;
+    this.height = height;
+    this.weight = weight;
+    this.age = age;
+    this.gender = gender;
+    this.knife = knife;
+}
+```
+
+부모 클래스의 `attribute(class 내부의 변수)` 상속이 가능하다는 것은 부모 클래스의 `Method` 또한 상속이 가능해야 논리적이다. 이번에는 `Warrior` 클래스에서 부모 클래스인 `Human` 클래스의 `method`를 이용해보자.
+
+```javascript
+class Human {
+    constructor(name, height, weight, age, gender) {
+        this.name = name;
+        this.height = height;
+        this.weight = weight;
+        this.age = age;
+        this.gender = gender;
+    }
+    
+    walk() {
+        console.log(`${this.name}이 걷는다.`);
+    }
+    
+    run() {
+        console.log(`${this.name}이 뛴다.`)
+    }
+    
+    speak() {
+		console.log(`${this.name}이 말한다.`);		
+    }
+    
+    hit() {
+        console.log(`${this.name}이 주먹으로 사냥감을 사냥하다.`)
+    }
+    
+    shareInfo() {
+        console.log(`${this.name}의 정보를 공유하다.`)
+        return {
+            name: this.name,
+            height: this.height,
+            weight: this.weight,
+            age: this.age,
+            gender: this.gender
+        }
+    }
+}
+
+
+class Warrior extends Human {
+
+    constructor(name, height, weight, age, gender, knife) {
+        super(name, height, weight, age, gender);
+        this.knife = knife;
+    }
+
+    hitAndCutOpponent() {
+        super.hit();
+        console.log(`${this.name}이 칼으로 사냥감을 사냥하다`);
+    }
+
+    getKnife() {
+        console.log(`${this.knife}종류의 칼을 사용하고 있다`)
+    }
+}
+
+const su = new Warrior('su', 180, 100, 20, 'male', 'solider knife');
+su.hitAndCutOpponent();
+su.getKnife();
+```
+
+위 코드를 보면, `Human` 클래스를 상속한 `Warrior` 클래스 내부의 `hitAndCutOpponent` method 내부에서 `super`라는 예약어를 이용해 부모인 `Human` 클래스의 `hit`이라는 메소드를 사용하는 것을 알 수 있다. 이것이 바로 `OOP (객체지향 프로그램밍)`을 이루는 큰 기둥 중 하나인 `상속(Inheritance`)이다.
+
+# 2. 다형성(Polymorphism)
+
+하나의 `attribute(class 내부의 변수)`
 
 
 
 
 
 
-https://www.educative.io/blog/object-oriented-programming#four
 
-https://jamiezzhou.wordpress.com/2018/12/24/week10%EF%BC%9Aoop-object-oriented-programming/
+
+
+
+
+
+
+
 
 
 
