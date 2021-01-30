@@ -234,7 +234,11 @@ Test.printPublisher();
 
 ![Object Oriented Programming - FusionReactor](https://www.fusion-reactor.com/wp-content/uploads/2020/09/oop-1.png)
 
-# 1. 상속 (Inheritance)
+# 1. 추상화 (Abstraction)
+
+https://medium.com/@viktor.kukurba/object-oriented-programming-in-javascript-1-abstraction-c47307c469d1
+
+# 2. 상속 (Inheritance)
 
 `상속(inheritance)`은 자식 클래스가 부모 클래스의 `attribute(class 내부의 변수)`와 `method`를 상속해 이용할 수 있게됨을 의미한다. 게임을 잘 생각해보자. 이 게임에는, 총을 쏘는 사람, 칼을 쓰는 사람, 마법을 쓰는 사람, 세 분류가 존재한다. 이 세 직업의 공통점은 무엇일까? 
 
@@ -394,13 +398,95 @@ su.getKnife();
 
 위 코드를 보면, `Human` 클래스를 상속한 `Warrior` 클래스 내부의 `hitAndCutOpponent` method 내부에서 `super`라는 예약어를 이용해 부모인 `Human` 클래스의 `hit`이라는 메소드를 사용하는 것을 알 수 있다. 이것이 바로 `OOP (객체지향 프로그램밍)`을 이루는 큰 기둥 중 하나인 `상속(Inheritance`)이다.
 
-# 2. 다형성(Polymorphism)
+# 3. 다형성(Polymorphism)
 
-하나의 `attribute(class 내부의 변수)`
+> Poly= many, Morphism=form
 
+하나의 `attribute(class 내부의 변수)` 혹은 `method(class 내부의 함수)`가 다른 방식으로 사용되는 경우가 발생할 수 있다. `다형성(Polymorphism)`은 의미 그대로 한 가지 기능을 의미하는 것이 아니라 하나의 이름이 여러 가지 방식으로 표현됨을 알 수 있다.
 
+도형을 생각해 보자. 세 개 이상의 변의 가진 도형은 공통적으로 너비(width)와 높이(height)가 존재한다. 또한 각 도형에 특정 색(color)이 존재하고, 이 도형이 어떤 색깔이고 동시에 어떤 너비를 가지는지 출력하는 메소드(method)가 있다고 생각해 보자. 이것을 코드로 옮겨보자.
 
+```javascript
+class Shape {
+    constructor(width, height, color) {
+        this.width = width;
+        this.height = height;
+        this.color = color;
+    }
+    
+    draw() {
+        console.log(`이 도형은 ${color} 색을 가졌습니다.`);
+    }
+    
+    getArea() {
+        return this.width * this.height;
+    }
+}
+```
 
+이번에는 이 `Shape` 클래스를 상속하는 `Rectangle` 클래스와 `Triangle` 클래스가 있다고 생각해 보자. `Triangle` 의 경우 넓이 공식이 `Shape`에 있는 `getArea 메소드(method)` 와는 다르다. 이때 `다형성(Polymorphism)`이라는 개념을 이용할 수 있다. 
+
+이때 `다형성(Polymorphism)` 패러다임을 구현하기 위해 `Overriding`이라는 것을 사용할 수 있다. 어렵게 생각하지 말자. 그냥 `Shape` 클래스에 있는 `getArea 메소드(method)와` 똑같은 이름을 가진 `메소드(method)`를 `Triangle` 클래스에 정의하는 것이다. 이렇게 되면 `Triangle` 클래스에서 `getArea 메소드(method`)를 호출했을 때, 상속한 `Shape` 클래스의 `getArea 메소드(method)` 대신에, `Triangle` 클래스 자신만의 `getArea 메소드(method)`를 사용하는 것이다. 
+
+이러한 것을 `다형성(Polymorphism)`이라 칭한다.`Shape` 클래스를 상속해 사용할 수 있는 것은 최대로 사용하고, 그중 마음에 안 드는 것은 내 입맛에 맞게 변경해 사용하겠다는 의도를 가진다. 단물만 쏙 빼먹고 나머지는 내가 알아서 구현하겠다 이런 의미로 받아들여도 된다 (부정적 의미로 작성한 말이 아니기 때문에 오해는 없길 바란다).
+
+```javascript
+class Shape {
+    constructor(width, height, color) {
+        this.width = width;
+        this.height = height;
+        this.color = color;
+    }
+    
+    draw() {
+        console.log(`이 도형은 ${color} 색을 가졌습니다.`);
+    }
+    
+    getArea() {
+        return this.width * this.height;
+    }
+}
+
+class Rectangle extends Shape {}
+
+class Triangle extends Shape {
+    constructor(width, height, color) {
+        super(width, height, color);
+    }
+    
+	getArea() {
+        return (this.width * this.height) / 2;
+    }  
+}
+
+class Trapezoid extends Shape {
+    constructor(width, height, color, base1, base2) {
+        super(width, height, color);
+        this.base1 = base1;
+        this.base2 = base2;s
+    }
+    
+    getArea() {
+        return ((base1 + base2) * height) / 2;
+    }
+}
+```
+
+#### 상속을 했다면 다음과 같은 논리가 성립한다.
+
+`Triangle or Rectangle`클래스의 `객체(object)` 혹은 `인스턴스(instance)`라는 것은 `Shape` 클래스의 `객체(object)` 혹은 `인스턴스(instance)`임을 의미한다. `Shape` 클래스는 모든 `객체(object)` 혹은 클래스의 부모인 `Object`의 `객체(object)` 혹은 `인스턴스(instance)`임을 의미한다.
+
+어떤 클래스의 `객체(object)` 혹은 `인스턴스(instance)`임을 확인하는 목적으로 `instanceof` 메소드를 사용할 수 있다.
+
+```javascript
+const rect = new Rectangle(10, 20, 'red');
+
+console.log(rect instanceof Rectangle); // true
+console.log(rect instanceof Shape); // true
+console.log(rect instanceof Trapezoid); // false
+console.log(rect instanceof Triangle); // false
+console.log(rect instanceof Object); // true
+```
 
 
 

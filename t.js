@@ -99,3 +99,17 @@
 // 우리는 이 사용자가 몇 번에 걸쳐 맞췄는지
 // 이 사용자에게 무작위로 출력한 숫자보다 큰지 작은지 힌트를 줄 수 있어
 
+// 프로그래밍 3대장
+// 1. 조건문 - if, else if, else, switch, ternary operator
+// 2. 반복문 - while, do ~ while, for
+// 3. 함수
+
+// for 문
+for(let i = 0; i < 10; i++) {
+    // 1 ~ 10 다 출력하고 싶어, 근데 8만 출력x
+    if (i === 8) {
+        break;
+    }
+
+    console.log(i);
+}
