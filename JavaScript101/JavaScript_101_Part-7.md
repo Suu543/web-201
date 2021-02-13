@@ -630,6 +630,38 @@ const simplyAdd = (a, b) => {
 })();
 ```
 
+## Summary
+
+```javascript
+// function 예약어와 함께 이름을 붙인 경우 
+function doStuff() {};
+
+// function 이름이 생략된 경우
+const doStuff = function() {};
+
+// Arrow Function
+const doStuff = () => {};
+
+// Hoisting
+// Hoisting은 코드의 최상단에서 함수와 변수의 이용성을 의미한다. 이러한 함수들은 컴파일 시간에 초기화 되어 이 파일의 어디서든지 접근이 가능하다.
+
+//  Function declaration은 Hoisting이 발생하지만, function expression은 그렇지 않다.
+// 아래 코드는 오류를 발생시키지 않는다
+doStuff();
+function doStuff() {};
+
+// 아래 코드는 오류를 발생시킨다
+doStuff();
+const doStuff = () => {};
+
+// 언제 function expression을 사용해야하는가?
+Function Expression은 Avoid Polluting the global scope의 목적으로 사용한다. 하나의 프로그램이 다수의 다른 함수를 인지하고 있는 것 대신에, 이것을 익명으로 만들어 사용되고 바로 사라지게 하기 위한 목적이다.
+
+// In short, use function declarations when you want to create a function on the global scope and make it available throughout your code. Use function expressions to limit where the function is available, keep your global scope light, and maintain clean syntax.
+```
+
+
+
 ## Quiz
 
 ```javascript
