@@ -78,20 +78,20 @@ for (let value of iterable) {
 ```javascript
 let arr = [...Array(1000).keys()]
 
-console.log('test');
+console.time('test');
 
 for (let i = 0; i < arr.length; i++) {
     console.log(arr[i]);
 }
 
-console.log('test');
+console.timeEnd('test');
 // test: 260.421ms
 
 // --------------------------------------------------------------------------------------
 
 let arr = [...Array(1000).keys()]
 
-console.log('test');
+console.time('test');
 
 // i < arr.length; i++ or i-- 등을 작성하지 않아도 된다.
 // 가독성이 좋다 arr[i] 대신에 value로 접근하기 때문에
@@ -99,7 +99,7 @@ for (let value of arr) {
     console.log(value);
 }
 
-console.log('test');
+console.timeEnd('test');
 // test: 215.769ms
 ```
 
