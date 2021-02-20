@@ -199,6 +199,8 @@ console.log(newArr); // undefined
 -  `for loop`와 다르게 중간에 끊을 방법이 없다. (단, `return`을 이용해 `skip`은 가능하다).
 - `return` 값을 받지 못한다.
 
+![javascript prototype chain 이미지 검색결과](https://uploads.toptal.io/blog/image/392/toptal-blog-image-1399822383211.png)
+
 ### 5. map
 
 ```javascript
