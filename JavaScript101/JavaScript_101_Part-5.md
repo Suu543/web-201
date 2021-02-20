@@ -19,9 +19,9 @@ for (let i = 0; i < 10; i++) {
 ```
 
 - 가장 빠르고 단순하다. 효율적이다.
-- 모든 자료형에 사용히 가능하다.
+- 모든 자료형에 사용이 가능하다.
 - 중간에 loop 건너뛰기 혹은 종료가 가능하다 (continue or break).
-- 반복범위의 유연한 조정이 가능하다 (i++, i--, etc).
+- 반복 범위의 유연한 조정이 가능하다 (i++, i--, etc).
 - 변수를 활용할 수 있다 (let i, etc).
 
 ### 2. for ... in
@@ -46,8 +46,6 @@ for (let key in obj) {
 - `객체(Object)`의 `Key` 값과 `Value` 값을 출력하는데 유용하다.
 - `객체(object)`의 `Key`값의 갯수만큼 반복해 첫번째 ~ 마지막 키값까지 반복한다.
 
-
-
 ### 3. for ... of
 
 ```javascript
@@ -63,10 +61,47 @@ for (let value of iterable) {
 ```
 
 - `for ... of`는 `ES6`에 추가된 새로운 `Collection` 전용 반복 구문.
-- `for ... of` 구문을 사용하기 위해서는 `Collection` 객체가 `[Symbol.iterable]` 속성을 가지고 있어야한다.
-- https://yjshin.tistory.com/entry/JavaScript-%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-for-%EB%AC%B8-for-in-%EB%AC%B8-for-of-%EB%AC%B8
+- `for ... of` 구문을 사용하기 위해서는 `Collection` 객체가 `[Symbol.iterable]` 속성을 가지고 있어야함.
 
+### for ... in vs for ... of
 
+`for ... in`문은 `object`의 `key`값을 순회하는데 사용하는 반복문이다.
+
+`for ... of`문은 `array`를 순회하는데 사용할 수 있다.
+
+`for .. in`은 `object` 데이터 타입에 사용할 수 있지만, `for .. of`는 `for loop` 방식이 있는데 왜 사용하는 걸까?
+
+1. `for loop`를 사용할 때 범위와, 증감인자를 따로 명시하지 않아도 된다.
+2. `array`의 요소에 접근할 때 `array[i]`와 같은 방식 대신에 `value`라는 이름으로 접근이 가능하다 (가독성이 좋다).
+3. 시간을 측정해보자, 누가 더 빠를까?
+
+```javascript
+let arr = [...Array(1000).keys()]
+
+console.log('test');
+
+for (let i = 0; i < arr.length; i++) {
+    console.log(arr[i]);
+}
+
+console.log('test');
+// test: 260.421ms
+
+// --------------------------------------------------------------------------------------
+
+let arr = [...Array(1000).keys()]
+
+console.log('test');
+
+// i < arr.length; i++ or i-- 등을 작성하지 않아도 된다.
+// 가독성이 좋다 arr[i] 대신에 value로 접근하기 때문에
+for (let value of arr) {
+    console.log(value);
+}
+
+console.log('test');
+// test: 215.769ms
+```
 
 ### 4. forEach
 
@@ -81,31 +116,73 @@ arr.forEach(function(value, index, array) {
 - 장점은 1번의 `for loop` 보다 가독성이 좋다.
 
 ```javascript
-let arr = [
-    {property1: 'Hello', property2: 'World'},
-    {property1: 'Hello', property2: 'World'},
-    {property1: 'Hello', property2: 'World'},
-    {property1: 'Hello', property2: 'World'},
-	{property1: 'Hello', property2: 'World'},
-	{property1: 'Hello', property2: 'World'}
+const foodArray = [
+    { name: 'Burrito', ingredients: ['onion', 'tomato', 'cheese']},
+    { name: 'Pizza', ingredients: ['onion', 'tomato', 'cheese'] },
+    { name: 'Burger', ingredients: ['onion', 'tomato', 'cheese'] },
+    { name: 'Pasta', ingredients: ['onion', 'tomato', 'cheese'] }
 ];
 
-for (var i = 0; i < arr.length; i++) {
-    console.log('element', i, arr[i]);
-    console.log(arr[i].property1 + arr[i].property2);
-    console.log(arr[i].property2);
-};
+// 1. for문을 이용해서 순회
+for (let i = 0; i < foodArray.length; i++) {
+    console.log(`i value: ${i} | Food Name: `, foodArray[i]);
+}
 
-arr.forEach(function(value, index, array) {
-    console.log('element', index, value);
-    console.log(value.property1 + v.property2);
-    console.log(value.property2);
-})
-```
+// 2. forEach를 이용해 위 코드를 구현해보자
+foodArray.forEach((value, index, array)) {
+    console.log(`i value: ${index} | Food Name: `, value);
+}
 
-- 가독성의 관점에서 `for loop`와 `forEach` 둘 중 어느 것이 더 좋을까? `forEach`는 복잡한 객체를 처리하는데 유용하다.  조금 더 인간친화적인 방법이라 할 수 있다.
+foodArray.forEach((food, index, array)) {
+    console.log(`i value: ${index} | Food Name `, food);
+}
 
-```javascript
+// 3. forEach는 변수의 범위를 Block 단위로 유지한다
+const num = 4;
+const arr = [0, 1, 2];
+
+arr.forEach(num => {
+    console.log(num);
+});
+
+console.log(num);
+
+// 4. forEach가독성을 높여보자
+const foodArray = [
+    { name: 'Burrito', ingredients: ['onion', 'tomato', 'cheese']},
+    { name: 'Pizza', ingredients: ['onion', 'tomato', 'cheese'] },
+    { name: 'Burger', ingredients: ['onion', 'tomato', 'cheese'] },
+    { name: 'Pasta', ingredients: ['onion', 'tomato', 'cheese'] }
+];
+
+for (let i = 0; i < foodArray.length; i++) {
+    let food = foodArray[i];
+    console.log(food);
+    
+    for (let j = 0; j < food.ingredients.length; j++) {
+        let ingredient = food.ingredients[j];
+        console.log(ingredient);
+    }
+}
+
+// 위 코드를 forEach를 이용해 작성해보자
+foodArray.forEach(food => {
+    console.log(food);
+    food.ingredients.forEach(ingredient => {
+        console.log(ingredient);
+    });
+});
+
+// 5. for loop는 쉽게 빠져나갈 수 있다
+for (let i = 0; foodArray.length; i++) {
+    if (foodArray[i].name === 'Pizza') {
+        console.log('I LOVE PIZZA');
+        break;
+    }
+}
+
+// forEach 구문은 중간에 빠져나갈 방법이 없다
+
 // forEach는 구문 밖으로 return 값을 받지 못한다.
 let arr = [1, 2, 3, 4, 5];
 let newArr = arr.forEach(function(e, i) {
@@ -115,13 +192,49 @@ let newArr = arr.forEach(function(e, i) {
 console.log(newArr); // undefined
 ```
 
+- 가독성의 관점에서 `for loop`와 `forEach` 둘 중 어느 것이 더 좋을까? `forEach`는 복잡한 객체를 처리하는데 유용하다.  조금 더 인간친화적인 방법이라 할 수 있다.
 - `forEach`는 빠르다
 - `array (object)`에서 사용 할 수 있다
 - 일반 `for loop`보다 가독성이 좋다. 또한 `object`형의 요소를 다루기 용이하다.
 -  `for loop`와 다르게 중간에 끊을 방법이 없다. (단, `return`을 이용해 `skip`은 가능하다).
 - `return` 값을 받지 못한다.
 
-### 5. filter
+### 5. map
+
+```javascript
+let arr = [1, 2, 3, 4, 5];
+let newArr = arr.map(function(value, index, arr) {
+    return v + 1;
+});
+
+// [2, 3, 4, 5, 6];
+```
+
+- 빠르다
+- Chaining이 가능하다.
+- 대용량 배열 처리시 메모리 overflow 가능성이 있다.
+- return 값 그 자체를 반환한다 (새로운 배열).
+
+### map을 직접 구현해보자
+
+```javascript
+Array.prototype.mymap = function(callback) {
+    const resultArray = [];	
+    
+    for (let index = 0; index < this.length; index++) {
+        resultArray.push(callback(this[index], index, this));
+    }
+    
+    return resultArray;
+}
+
+let output = sample.mymap((value, index, array) => {
+    console.log(`val: ${val}, index: ${index}, array: ${array}`);
+    return val * 2;
+})
+```
+
+### 6. filter
 
 ```javascript
 let arr = [1, 2, 3, 4, 5];
@@ -165,21 +278,25 @@ var newArr = arr.filter(function(el) { return el; });
 - 대용량 배열 처리시 메모리 overflow 가능성이 있다.
 - return 값은 true/false 이며, 요소를 반환한다.
 
-### 6. map
+### filter를 직접 구현해보자
 
 ```javascript
-let arr = [1, 2, 3, 4, 5];
-let newArr = arr.map(function(value, index, arr) {
-    return v + 1;
-});
+Array.prototype.myFilter = function(callback) {
+    const filteredArr = [];
+    
+    for (let index = 0; index < this.length; index++) {
+        if (callback(this[index], index, this)) {
+            filteredArr.push(this[index]);
+        }
+    }
+    
+    return filteredArr;
+}
 
-// [2, 3, 4, 5, 6];
+const names = ['a', 'b', 'c']
+const filteredNames = names.myFilter(name => name !== 'a');
+console.log(filteredNames); // 'b', 'c'
 ```
-
-- 빠르다
-- Chaining이 가능하다.
-- 대용량 배열 처리시 메모리 overflow 가능성이 있다.
-- return 값 그 자체를 반환한다.
 
 ### 7. reduce
 
@@ -205,6 +322,46 @@ let newArr = arr.reduce(function(accumulator, value, index, array) {
 ```
 
 - 첫번째 예시와 다르게 `초기값 10 (두번째 인자)` 때문에 25라는 값이 나오게 됬다. 어떻게 활용하느냐에 따라 `reduce`는 강력하고 확장성이 높다. `accumulator`의 값은 배열이 될수도 있고, `object`가 될수도 있다.
+
+### reduce를 직접 구현해보자
+
+```javascript
+const names = ['Hello ', 'World ', 'Welcome'];
+Array.prototype.myReduce = function (callback, accumulator) {
+    if (this.length < 1) {
+        throw new Error("Array is Empty");
+    }
+
+    if(!accumulator) {
+        if (typeof this[0] === 'string') {
+            accumulator = '';
+        } else if (typeof this[0] === 'number') {
+            accumulator = 0;
+        }
+    }
+
+    for (let index = 0; index < this.length; index++) {
+        accumulator = callback(accumulator, this[index]);
+    }
+
+    return accumulator;
+}
+
+const statement = names.myReduce((acc, element) => acc + element);
+console.log(statement);
+
+const numbers = [1, 2, 3, 4, 5];
+const numbersResult = numbers.myReduce((acc, element) => acc + element);
+console.log(numbersResult);
+```
+
+
+
+
+
+
+
+
 
 <img src="https://daesuni.github.io/images/posts/loopperformance.png" />
 
