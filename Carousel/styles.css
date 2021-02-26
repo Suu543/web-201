@@ -1,0 +1,95 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    font-size: 62.5%
+}
+
+.carousel-wrapper {
+    overflow: hidden;
+    width: 90vw;
+    margin: auto;
+}
+
+.carousel {
+    width: 100%;
+    height: 100vh;
+    transform-style: preserve-3d;
+}
+
+.carousel__photo {
+    opacity: 0;
+    width: 100%;
+    margin: auto;
+    padding: 1rem 4rem;
+    position: absolute;
+    top: 0;
+    z-index: 100;
+    transition: transform .5s, opcaity .5, z-index .5s;
+}
+
+.carousel__photo.initial,
+.carousel__photo.active {
+    opacity: 1;
+    z-index: 900;
+    position: relative;
+}
+
+.carousel__photo.prev,
+.carousel__photo.next {
+    z-index: 800;
+}
+
+.carousel__photo.prev {
+    transform: translateX(-100%);
+}
+
+.carousel__photo.next {
+    transform: translateX(100%);
+}
+
+.carousel__button--prev,
+.carousel__button--next {
+  position: absolute;
+  top:50%;
+  width: 3rem;
+  height: 3rem;
+  background-color: #FFF;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  cursor: pointer; 
+  z-index: 1001; /* Sit on top of everything */
+  border:1px solid black;
+/*  opacity: 0;  Hide buttons until carousel is initialised 
+  transition:opacity 1s;*/
+}
+
+.carousel__button--prev {
+  left:0;
+}
+
+.carousel__button--next {
+  right:0;
+}
+
+/* Use pseudo elements to insert arrows inside of navigation buttons */
+.carousel__button--prev::after,
+.carousel__button--next::after {
+  content: " ";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  top: 50%;
+  left: 54%;
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
+  transform: translate(-50%, -50%) rotate(135deg);
+}
+
+.carousel__button--next::after {
+  left: 47%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
