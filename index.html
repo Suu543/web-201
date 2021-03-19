@@ -1,20 +1,64 @@
-<html>
-    <head>What is DOM</head>
-    <body>
-        <h1>DOM Hierarchy</h1>
-        <p>Did you know what the default width of an input box is...</p>
-        <!-- First Form -->
-        <form>
-            First Name: <br />
-            <input type="text" />
-            <br />
-        </form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Hello World</h1>
+    <h1>Hi HiHi</h1>
+    <h1>adjpoawjdwopajd</h1>
+    <h1>adjpoawjdwopajd</h1>
+    <h1>adjpoawjdwopajd</h1>
+    <h1>adjpoawjdwopajd</h1>
+    <h1>adjpoawjdwopajd</h1>
 
-        <!-- Second Form -->
-        <form>
-            <input type="checkbox" name="happy" checked> Happy <br />
-            <input type="checkbox" name="sad" /> Sad <br />
-            <input type="submit" value="submit">
-        </form>
-    </body>
+    <p id="test">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, numquam provident ipsum soluta deleniti omnis, sint harum laborum tempore minima fugit. Possimus delectus vero architecto obcaecati voluptas, mollitia corporis id.</p>
+
+    <!-- Unordered List (순서가 x 리스트) -->
+    <ul class="case">
+        <li>adasd</li>
+    </ul>
+
+    <!-- Ordered List -->
+    <ol class="case">
+        <li>adasd</li>
+    </ol>
+
+
+    <script>
+        // p = paragraph
+        let newPara = document.createElement('p');
+        newPara.innerText = "This is Paragraph";
+
+        // append: 붙이다
+        let body = document.querySelector('body');
+        body.appendChild(newPara);
+
+        // 아하 document를 이용해서 요소에 접근할 수 있구나
+        /*
+            1. id (재사용이 불가능 하다) -- 1개
+            2. class (재사용이 가능하다) -- 2개 이상 다수
+            3. tag (같은 태그를 사용할 수 있다) -- 2개 이상 다수
+        */
+
+        // 1. id 값을 이용해서 요소를 가져온다 (단일 요소)
+        let test = document.getElementById("test");
+        console.log(test);
+
+        // 2. class를 이용해서 요소를 가져온다 (다수)
+        let cases = document.getElementsByClassName("case");
+        console.log(cases[0]);
+
+        // 3. tag 이름으로 요소를 가져오기
+        let headings = document.getElementsByTagName("h1");
+        for (let i = 0; i < headings.length; i++) {
+            i % 2 == 0 ? 
+            headings[i].style.backgroundColor = "red":
+            headings[i].style.backgroundColor = "blue";
+        }
+    </script>
+</body>
 </html>
